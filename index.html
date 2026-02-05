@@ -8,14 +8,200 @@
     <meta name="description"
         content="Aluguel de Sonhos: Mais de 20 anos de experiência em aluguel de brinquedos infláveis (tobogã, touro mecânico, pula-pula) para festas e eventos no RJ.">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts with swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Poppins:wght@400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Critical CSS -->
+    <style>
+        :root {
+            --primary: #00CED1;
+            --primary-dark: #008B8D;
+            --primary-light: #E0F7F8;
+            --secondary: #FFB800;
+            --dark: #1A1A2E;
+            --gray-800: #2D3748;
+            --gray-600: #4A5568;
+            --gray-200: #E2E8F0;
+            --gray-100: #F7FAFC;
+            --white: #FFFFFF;
+            --font-heading: 'Poppins', sans-serif;
+            --font-display: 'Fredoka', sans-serif;
+            --font-body: 'Ubuntu', sans-serif;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-3xl: 6rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-full: 9999px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-800);
+            background: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .container-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .main-header .container-flex {
+            min-height: 80px;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: .5rem;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: .5rem var(--spacing-md);
+            text-decoration: none;
+            color: var(--gray-600);
+            font-family: var(--font-display);
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .main-nav a.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-whatsapp-header {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: #10B981;
+            color: var(--white);
+            text-decoration: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-home {
+            position: relative;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 206, 209, 0.8) 0%, rgba(26, 26, 46, 0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: var(--spacing-xl);
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .btn-primary-green {
+            background: #10B981;
+            color: var(--white);
+        }
+
+        .mobile-toggle {
+            display: none;
+        }
+    </style>
+
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="css/style.css">
+    </noscript>
 </head>
 
 <body>
@@ -25,7 +211,7 @@
             <div class="logo">
                 <a href="index.html">
                     <img src="https://alugueldesonhos.com.br/wp-content/uploads/2024/11/cropped-DALL·E-2024-11-23-10.00-180x180.png"
-                        alt="Aluguel de Sonhos Logo">
+                        alt="Aluguel de Sonhos Logo" width="180" height="50" fetchpriority="high">
                 </a>
             </div>
             <nav class="main-nav">
@@ -48,7 +234,8 @@
 
     <!-- Hero Section -->
     <section class="hero-home"
-        style="background-image: linear-gradient(rgba(4, 4, 4, 0.45), rgba(4, 4, 4, 0.45)), url('https://alugueldesonhos.com.br/wp-content/uploads/2025/03/aluguel_brinquedo_festas_11zon-2.webp');">
+        style="background-image: linear-gradient(rgba(4, 4, 4, 0.45), rgba(4, 4, 4, 0.45)), url('https://alugueldesonhos.com.br/wp-content/uploads/2025/03/aluguel_brinquedo_festas_11zon-2.webp');"
+        fetchpriority="high">
         <div class="container">
             <div class="hero-content">
                 <h1>Aluguel de brinquedos para festa no Rio de Janeiro. Torne sua festa inesquecível!</h1>
@@ -129,7 +316,7 @@
         <div class="container grid-2-col">
             <div class="history-image">
                 <img src="https://alugueldesonhos.com.br/wp-content/uploads/2025/04/toboga-gigante-inflavel-colorido-festa.webp"
-                    alt="Tobogã Gigante">
+                    alt="Tobogã Gigante" loading="lazy" width="600" height="400">
             </div>
             <div class="history-text">
                 <h2>Nossa História: Mais de Duas Décadas de Tradição</h2>
@@ -157,7 +344,8 @@
             <div class="catalog-grid">
                 <div class="toy-card">
                     <img src="https://alugueldesonhos.com.br/wp-content/uploads/2025/04/toboga-gigante-inflavel-colorido-festa.webp"
-                        alt="Tobogã Gigante">
+                        alt="Tobogã Gigante" loading="lazy" width="300" height="280">
+
                     <div class="toy-info">
                         <h3>Tobogã Gigante 8m</h3>
                         <a href="https://hi.switchy.io/EXHZ" class="btn btn-toy">Orçar no WhatsApp</a>
@@ -165,7 +353,8 @@
                 </div>
                 <div class="toy-card">
                     <img src="https://alugueldesonhos.com.br/wp-content/uploads/2025/03/ana-clara-festa-cama-elastica-copacabana.jpg-600x600.webp"
-                        alt="Cama Elástica">
+                        alt="Cama Elástica" loading="lazy" width="300" height="280">
+
                     <div class="toy-info">
                         <h3>Cama Elástica / Pula-Pula</h3>
                         <a href="https://hi.switchy.io/EXHZ" class="btn btn-toy">Orçar no WhatsApp</a>
@@ -173,7 +362,8 @@
                 </div>
                 <div class="toy-card">
                     <img src="https://alugueldesonhos.com.br/wp-content/uploads/2025/03/aluguel_brinquedo_festas_11zon-2.webp"
-                        alt="Castelinho">
+                        alt="Castelinho" loading="lazy" width="300" height="280">
+
                     <div class="toy-info">
                         <h3>Castelinho com Tobogã</h3>
                         <a href="https://hi.switchy.io/EXHZ" class="btn btn-toy">Orçar no WhatsApp</a>
@@ -253,7 +443,8 @@
         <div class="container grid-footer">
             <div class="footer-col">
                 <img src="https://alugueldesonhos.com.br/wp-content/uploads/2024/11/cropped-DALL·E-2024-11-23-10.00-180x180.png"
-                    alt="Logo Footer" class="footer-logo">
+                    alt="Logo Footer" class="footer-logo" width="180" height="180" loading="lazy">
+
                 <p>Há mais de 20 anos, trazendo alegria para festas e eventos no Rio de Janeiro.</p>
                 <div class="social-links">
                     <a href="https://www.instagram.com/alugueldesonhosrj/" target="_blank">📷 Instagram</a>
@@ -285,14 +476,14 @@
     <!-- JoinChat Floating -->
     <div class="joinchat-float">
         <a href="https://hi.switchy.io/EXHZ" target="_blank" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" width="60" height="60">
                 <path
                     d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.437 2.503 1.169 3.466L6.761 18l2.645-.694c.912.5 1.954.787 3.065.787a5.772 5.772 0 005.768-5.768 5.77 5.77 0 00-6.208-6.153zm3.763 8.356c-.161.455-.926.915-1.272.973-.347.058-.696.082-2.126-.484-1.833-.724-3.012-2.583-3.103-2.704-.092-.121-.745-.992-.745-1.898 0-.907.476-1.35.645-1.543.169-.193.368-.242.491-.242.122 0 .245.001.353.006.112.004.262-.041.41.311.161.385.553 1.348.6 1.464.047.116.077.25.001.403-.077.154-.116.25-.231.385-.116.135-.242.3-.346.403-.116.116-.237.242-.102.476.135.234.601.99 1.29 1.601.886.791 1.634 1.036 1.868 1.152.234.116.371.1.508-.054.137-.154.586-.684.742-.916.157-.231.311-.194.523-.116.212.078 1.343.634 1.574.75.231.116.385.174.442.27.058.096.058.558-.103 1.013zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.957-1.301C8.42 21.575 10.147 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.741 0-3.37-.484-4.755-1.322l-.341-.208-2.83.743.756-2.747-.227-.361A7.957 7.957 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
             </svg>
         </a>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 
 </html>
