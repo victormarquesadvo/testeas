@@ -8,39 +8,57 @@
     <meta name="description"
         content="Aluguel de Sonhos: Mais de 20 anos de experiência em aluguel de brinquedos infláveis (tobogã, touro mecânico, pula-pula) para festas e eventos no RJ.">
 
-    <!-- Google Fonts with swap -->
+    <!-- Font Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Poppins:wght@400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
 
-    <!-- Critical CSS -->
+    <!-- Preload LCP Background Image -->
+    <link rel="preload" as="image"
+        href="https://alugueldesonhos.com.br/wp-content/uploads/2025/03/aluguel_brinquedo_festas_11zon-2.webp"
+        fetchpriority="high">
+
+    <!-- Essential Font Load with Swap -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Poppins:wght@400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Inlining Full CSS for Zero Render Blocking and Zero FOUC CLS -->
     <style>
         :root {
             --primary: #00CED1;
             --primary-dark: #008B8D;
             --primary-light: #E0F7F8;
             --secondary: #FFB800;
+            --secondary-dark: #CC9300;
+            --accent-green: #10B981;
+            --accent-green-dark: #059669;
+            --accent-coral: #FF6B6B;
             --dark: #1A1A2E;
             --gray-800: #2D3748;
             --gray-600: #4A5568;
+            --gray-400: #A0AEC0;
             --gray-200: #E2E8F0;
             --gray-100: #F7FAFC;
             --white: #FFFFFF;
             --font-heading: 'Poppins', sans-serif;
             --font-display: 'Fredoka', sans-serif;
             --font-body: 'Ubuntu', sans-serif;
+            --spacing-xs: 0.5rem;
             --spacing-sm: 1rem;
             --spacing-md: 1.5rem;
             --spacing-lg: 2rem;
             --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
             --spacing-3xl: 6rem;
+            --radius-sm: 0.375rem;
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
             --radius-full: 9999px;
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
             --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -69,6 +87,30 @@
             display: block;
         }
 
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--gray-600);
+        }
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -89,11 +131,7 @@
             z-index: 1000;
             background: var(--white);
             box-shadow: var(--shadow-sm);
-        }
-
-        .main-header .container-flex {
             min-height: 80px;
-            padding: var(--spacing-sm) 0;
         }
 
         .logo img {
@@ -104,12 +142,12 @@
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: .5rem;
+            gap: var(--spacing-xs);
         }
 
         .main-nav a {
             display: block;
-            padding: .5rem var(--spacing-md);
+            padding: var(--spacing-xs) var(--spacing-md);
             text-decoration: none;
             color: var(--gray-600);
             font-family: var(--font-display);
@@ -126,8 +164,8 @@
         .btn-whatsapp-header {
             display: inline-flex;
             align-items: center;
-            gap: .5rem;
-            background: #10B981;
+            gap: var(--spacing-xs);
+            background: var(--accent-green);
             color: var(--white);
             text-decoration: none;
             padding: var(--spacing-sm) var(--spacing-lg);
@@ -142,12 +180,14 @@
         .hero-home {
             position: relative;
             min-height: 550px;
+            aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             background-size: cover;
             background-position: center;
             color: var(--white);
             padding: var(--spacing-3xl) 0;
+            background-image: linear-gradient(rgba(4, 4, 4, 0.45), rgba(4, 4, 4, 0.45)), url('https://alugueldesonhos.com.br/wp-content/uploads/2025/03/aluguel_brinquedo_festas_11zon-2.webp');
         }
 
         .hero-home::before {
@@ -164,18 +204,100 @@
         }
 
         .hero-content h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 5vw, 4rem);
             color: var(--white);
-            margin-bottom: var(--spacing-md);
-            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: var(--spacing-xl);
+        .section {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .bg-light {
+            background: var(--gray-100);
+        }
+
+        .section-title-center {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-2xl);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .service-card {
+            padding: var(--spacing-xl);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary);
+        }
+
+        .event-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .event-type-card {
+            background: var(--white);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        .check-list {
+            list-style: none;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .check-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: var(--spacing-sm);
             font-weight: 500;
+        }
+
+        .check-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .toy-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .toy-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .toy-info {
+            padding: var(--spacing-lg);
         }
 
         .btn {
@@ -188,20 +310,135 @@
         }
 
         .btn-primary-green {
-            background: #10B981;
+            background: var(--accent-green);
             color: var(--white);
+        }
+
+        .btn-toy {
+            display: block;
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--accent-green);
+            color: var(--white);
+            text-align: center;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            background: var(--gray-100);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 600px;
+            padding: var(--spacing-lg);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            padding: var(--spacing-xl);
+        }
+
+        .cta-whatsapp-banner {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--gray-800) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: var(--spacing-3xl) var(--spacing-lg);
+        }
+
+        .site-footer {
+            background: var(--gray-100);
+            padding: var(--spacing-3xl) 0 var(--spacing-lg);
+        }
+
+        .grid-footer {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-2xl);
+        }
+
+        .footer-logo {
+            height: 180px;
+            width: 180px;
+        }
+
+        .joinchat-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
         }
 
         .mobile-toggle {
             display: none;
         }
-    </style>
 
-    <!-- Non-critical CSS loaded asynchronously -->
-    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="css/style.css">
-    </noscript>
+        @media (max-width: 768px) {
+
+            .grid-2-col,
+            .grid-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-home {
+                min-height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .mobile-toggle .bar {
+                width: 25px;
+                height: 3px;
+                background: var(--primary);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -233,9 +470,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-home"
-        style="background-image: linear-gradient(rgba(4, 4, 4, 0.45), rgba(4, 4, 4, 0.45)), url('https://alugueldesonhos.com.br/wp-content/uploads/2025/03/aluguel_brinquedo_festas_11zon-2.webp');"
-        fetchpriority="high">
+    <section class="hero-home">
         <div class="container">
             <div class="hero-content">
                 <h1>Aluguel de brinquedos para festa no Rio de Janeiro. Torne sua festa inesquecível!</h1>
