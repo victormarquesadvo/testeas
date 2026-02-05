@@ -1,0 +1,20 @@
+# Arquivos temporários
+home.html
+images.txt
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node.js (se usar futuramente)
+node_modules/
+package-lock.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
